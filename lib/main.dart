@@ -152,7 +152,7 @@ class MyApp extends StatelessWidget {
                                       ) ,
 
                                         SizedBox(height: 10,),
-                                        Text("You 09:5",
+                                        Text("You 09:59",
                                         style: GoogleFonts.roboto(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 14.sp,
