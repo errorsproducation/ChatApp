@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -83,7 +84,6 @@ class MyApp extends StatelessWidget {
                         Container(
                           width: 28.w,
                           height: 28.h,
-
                         ),
 
                       ],
@@ -152,7 +152,7 @@ class MyApp extends StatelessWidget {
                                       ) ,
 
                                         SizedBox(height: 10,),
-                                        Text("You 09:58",
+                                        Text("You 09:5",
                                         style: GoogleFonts.roboto(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 14.sp,
