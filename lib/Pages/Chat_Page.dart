@@ -153,7 +153,7 @@ class _Chat_PageState extends State<Chat_Page> {
                                       ],
                                     ) ,
 
-                                    SizedBox(height: 10,),
+                                    SizedBox(height: 05,),
                                     Text("You ${snapshot1.child('time').value.toString()}",
                                       style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.w400,
@@ -161,6 +161,8 @@ class _Chat_PageState extends State<Chat_Page> {
                                         color: Color(0xff6A6B7C),
                                       ),
                                     ),
+
+
                                   ],
                                 ),
                               ],
@@ -285,17 +287,18 @@ class _Chat_PageState extends State<Chat_Page> {
                                 {
                                   "chat":"$SENDER_NAME: ${CHAT_TEXT_FIELD.text.toString()}",
                                   "name":"$SENDER_NAME",
-                                  "time":"${DateTime.now().millisecondsSinceEpoch}",
+                                  "time":"${DateTime.now().hour} : ${DateTime.now().minute}",
                                 }
                             );
                             ref.child("users").child(SENDER_ID).child("chat").child(RECEVIER_NAME).push().set(
                                 {
                                   "chat":"$SENDER_NAME: ${CHAT_TEXT_FIELD.text.toString()}",
                                   "name":"$SENDER_NAME",
-                                  "time":"${DateTime.now().hour}",
+                                  "time":"${DateTime.now().hour} : ${DateTime.now().minute}",
                                 }
                             );
 
+                            CHAT_TEXT_FIELD.clear();
 
 
 

@@ -6,6 +6,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 import 'Users_Screen.dart';
 
@@ -78,13 +79,6 @@ class _Profile_ScreenState extends State<Profile_Screen> {
             
                       InkWell(
                         onTap: () {
-                          String id= ref.push().key.toString();
-                           ref.child(id).set({
-                            "email":"${_auth.currentUser?.email}",
-                            "name":"${_auth.currentUser?.displayName}",
-                            "imageurl":"${_auth.currentUser?.photoURL}",
-                            "id":"$id",
-                          });
 
                         },
                         child: Container(
@@ -157,20 +151,74 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                 SizedBox(height: 30.h,),
                 Padding(
                   padding: const EdgeInsets.only(left: 17.0,right: 17,),
-                  child: Expanded(
-                    child: Container(
-                    child: Column(
-                      children: [
-                        Stack(
-                          children: [
-            
-            
-                            InkWell(
-                              onTap: () {
-                                setState(() {
+                  child: Container(
+                  child: Column(
+                    children: [
+                      Stack(
+                        children: [
 
-                                });
-                              },
+
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+
+                              });
+                            },
+                            child: Container(
+                              width: 390.w,
+                              height: 214.h,
+                              padding: EdgeInsets.all(15),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: 80.w,
+                                    height: 4,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xff868E95).withOpacity(0.2),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text("Bid",
+                                      style: GoogleFonts.montserrat(
+                                        color: Color(0xff272E46),
+                                        fontWeight: FontWeight.w800,
+                                        fontStyle: FontStyle.italic,
+                                        fontSize: 20.sp,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(19),
+                                border: Border.all(
+                                  width: 1.w,
+                                  color: Color(0xff868E95).withOpacity(0.1),
+                                )
+                              ),
+                            ),
+                          ),
+
+
+                          Padding(
+                            padding: const EdgeInsets.only(top: 60.0),
+                            child: InkWell(
+                               onTap:  () {
+                                 setState(() {
+                                   if(CARD_NAVIGATOR=="PERSONAL_INFORMATION"){
+                                     setState(() {
+                                       CARD_NAVIGATOR="STATISTICS";
+                                     });
+                                   }else if(CARD_NAVIGATOR=="STATISTICS"){
+                                     setState(() {
+                                       CARD_NAVIGATOR="PERSONAL_INFORMATION";
+                                     });
+                                   }
+
+                                 });
+                               },
                               child: Container(
                                 width: 390.w,
                                 height: 214.h,
@@ -186,7 +234,14 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                                     ),
                                     Align(
                                       alignment: Alignment.topLeft,
-                                      child: Text("Bid",
+                                      child: CARD_NAVIGATOR=="PERSONAL_INFORMATION"?Text("Statistics",
+                                        style: GoogleFonts.montserrat(
+                                          color: Color(0xff272E46),
+                                          fontWeight: FontWeight.w800,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 20.sp,
+                                        ),
+                                      ):Text("Personal Information",
                                         style: GoogleFonts.montserrat(
                                           color: Color(0xff272E46),
                                           fontWeight: FontWeight.w800,
@@ -198,98 +253,33 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                                   ],
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(19),
-                                  border: Border.all(
-                                    width: 1.w,
-                                    color: Color(0xff868E95).withOpacity(0.1),
-                                  )
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(19),
+                                    border: Border.all(
+                                      width: 1.w,
+                                      color: Color(0xff868E95).withOpacity(0.1),
+                                    ),
                                 ),
                               ),
                             ),
-            
-            
-                            Padding(
-                              padding: const EdgeInsets.only(top: 60.0),
-                              child: InkWell(
-                                 onTap:  () {
-                                   setState(() {
-                                     if(CARD_NAVIGATOR=="PERSONAL_INFORMATION"){
-                                       setState(() {
-                                         CARD_NAVIGATOR="STATISTICS";
-                                       });
-                                     }else if(CARD_NAVIGATOR=="STATISTICS"){
-                                       setState(() {
-                                         CARD_NAVIGATOR="PERSONAL_INFORMATION";
-                                       });
-                                     }
+                          ),
 
-                                   });
-                                 },
-                                child: Container(
-                                  width: 390.w,
-                                  height: 214.h,
-                                  padding: EdgeInsets.all(15),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: 80.w,
-                                        height: 4,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xff868E95).withOpacity(0.2),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.topLeft,
-                                        child: CARD_NAVIGATOR=="PERSONAL_INFORMATION"?Text("Statistics",
-                                          style: GoogleFonts.montserrat(
-                                            color: Color(0xff272E46),
-                                            fontWeight: FontWeight.w800,
-                                            fontStyle: FontStyle.italic,
-                                            fontSize: 20.sp,
-                                          ),
-                                        ):Text("Personal Information",
-                                          style: GoogleFonts.montserrat(
-                                            color: Color(0xff272E46),
-                                            fontWeight: FontWeight.w800,
-                                            fontStyle: FontStyle.italic,
-                                            fontSize: 20.sp,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(19),
-                                      border: Border.all(
-                                        width: 1.w,
-                                        color: Color(0xff868E95).withOpacity(0.1),
-                                      ),
-                                  ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 120.0),
+                            child: Container(
+                              width: 390.w,
+                              padding: EdgeInsets.only(top: 15,right: 15,left: 15),
+                              child: Personal_Details_Card(),
+                              decoration: BoxDecoration(
+                                color: Color(0xff272E46),
+                                borderRadius: BorderRadius.circular(19),
+                                border: Border.all(
+                                  width: 1.w,
+                                  color: Color(0xff868E95).withOpacity(0.1),
                                 ),
                               ),
                             ),
-
-                            Padding(
-                              padding: const EdgeInsets.only(top: 120.0),
-                              child: Container(
-                                width: 390.w,
-                                padding: EdgeInsets.only(top: 15,right: 15,left: 15),
-                                child: Personal_Details_Card(),
-                                decoration: BoxDecoration(
-                                  color: Color(0xff272E46),
-                                  borderRadius: BorderRadius.circular(19),
-                                  border: Border.all(
-                                    width: 1.w,
-                                    color: Color(0xff868E95).withOpacity(0.1),
-                                  ),
-                                ),
-                              ),
-                            ),
-
-
-            
+                          ),
 
 
 
@@ -308,12 +298,14 @@ class _Profile_ScreenState extends State<Profile_Screen> {
 
 
 
-                          ],
-                        ),
-                      ],
-                    ),
+
+
+
+                        ],
+                      ),
+                    ],
                   ),
-                  ),
+                                    ),
                 ),
                 SizedBox(height: 100,),
               ],
